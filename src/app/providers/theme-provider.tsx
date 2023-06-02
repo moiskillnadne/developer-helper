@@ -7,7 +7,7 @@ type Props = PropsWithChildren<unknown>
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#cf4dc8",
+      main: "#8EEA6E",
     },
     secondary: {
       main: "#faedfa",

@@ -1,37 +1,29 @@
-import { useState } from "react"
+import Container from "@mui/material/Container"
+import Typography from "@mui/material/Typography"
 
-import { Button, Container, FormControl, InputLabel, MenuItem, Select, Slider, Typography } from "@mui/material"
+import { headerHeight } from "~/shared/utils"
 
 export const LandingPage = () => {
-  const [ageValue, setAgeValue] = useState<number | undefined>(undefined)
+  const welcomePhrase = "Улучши свои программерские навыки и получи работу"
 
   return (
     <Container>
-      <Typography variant="h3">It is Landing page</Typography>
-
-      <Button variant="contained" color="primary">
-        Example button
-      </Button>
-
-      <Slider defaultValue={30} />
-
-      <Typography variant="body1">{`Your selected age: ${ageValue ?? ""}`}</Typography>
-
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={ageValue}
-          label="Age"
-          onChange={e => {
-            setAgeValue(Number(e.target.value))
+      <Container
+        sx={{
+          height: `calc(100vh - ${headerHeight}px)`,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}>
+        <Typography
+          variant="h3"
+          align="center"
+          sx={{
+            fontWeight: "bold",
           }}>
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={20}>20</MenuItem>
-          <MenuItem value={30}>30</MenuItem>
-        </Select>
-      </FormControl>
+          {welcomePhrase}
+        </Typography>
+      </Container>
     </Container>
   )
 }

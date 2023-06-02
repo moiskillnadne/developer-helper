@@ -1,15 +1,18 @@
-import React from "react"
-
+import { AppLayout } from "./layout"
 import { CustomThemeProvider, RouterProvider } from "./providers"
 
 import { Router } from "~/pages"
+
+import "./index.css"
 
 function App() {
   return (
     <>
       <CustomThemeProvider>
         <RouterProvider>
-          <Router />
+          <AppLayout>
+            <Router />
+          </AppLayout>
         </RouterProvider>
       </CustomThemeProvider>
     </>
