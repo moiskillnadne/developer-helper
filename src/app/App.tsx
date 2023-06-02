@@ -1,15 +1,17 @@
 import React from "react"
 
-import { RouterProvider } from "./providers"
+import { CustomThemeProvider, RouterProvider } from "./providers"
 
 import { Router } from "~/pages"
 
 function App() {
   return (
     <>
-      <RouterProvider>
-        <Router />
-      </RouterProvider>
+      <CustomThemeProvider>
+        <RouterProvider>
+          <Router />
+        </RouterProvider>
+      </CustomThemeProvider>
     </>
   )
 }
