@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material"
+import { FormControl, InputLabel, OutlinedInput, TextField } from "@mui/material"
 import { useController, useFormContext } from "react-hook-form"
 
 type Props = React.ComponentProps<typeof TextField> & {
@@ -6,19 +6,27 @@ type Props = React.ComponentProps<typeof TextField> & {
 }
 
 export const TextInputBase = (props: Props) => {
-  const { name, placeholder } = props
+  const { name, onChange, sx } = props
 
   const { control } = useFormContext()
   const {
-    field: { onChange, value },
-    fieldState: { invalid, error },
+    field: { onChange: onFormChange },
   } = useController({ name, control })
 
   const onChangeHanlder = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target
 
-    onChange(value)
+    if (onChange) {
+      onChange(event)
+    }
+
+    onFormChange(value)
   }
 
-  return <TextField type={props.type} name={name} placeholder={placeholder} value={value} onChange={onChangeHanlder} />
+  return (
+    <FormControl sx={sx}>
+      <InputLabel htmlFor="component-outlined">{name}</InputLabel>
+      <OutlinedInput id="component-outlined" label={name} onChange={onChangeHanlder} />
+    </FormControl>
+  )
 }

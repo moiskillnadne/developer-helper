@@ -8,22 +8,19 @@ const theme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#75d054",
+      main: "#DE07A2",
     },
     secondary: {
-      main: "#9400f5",
+      main: "#00c73b",
     },
     error: {
-      main: "#cb180a",
+      main: "#ed2939",
     },
     success: {
-      main: "#1e8123",
-    },
-    warning: {
-      main: "#f5a623",
+      main: "#2ade32",
     },
     info: {
-      main: "#2196f3",
+      main: "#3da8ff",
     },
   },
 })

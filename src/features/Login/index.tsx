@@ -23,8 +23,8 @@ export const LoginFeature = () => {
           justifyContent: "center",
           alignItems: "center",
         }}>
-        <TextInputBase type="text" name="email" variant="outlined" />
-        <TextInputBase type="text" name="password" variant="outlined" />
+        <TextInputBase type="text" name="email" placeholder="email" variant="outlined" sx={{ width: 300 }} />
+        <TextInputBase type="text" name="password" placeholder="password" variant="outlined" sx={{ width: 300 }} />
         <Button variant="contained" type="submit">
           Submit
         </Button>
