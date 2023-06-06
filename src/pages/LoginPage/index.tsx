@@ -1,3 +1,5 @@
+import { LoginWidget } from "~/widgets/Login"
+
 export const LoginPage = () => {
-  return <div>It is Login page</div>
+  return <LoginWidget />
 }
