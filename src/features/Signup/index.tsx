@@ -1,17 +1,18 @@
 import { Box, Button } from "@mui/material"
 
-import { LoginDataDTO, LoginSchema } from "./lib/login.schema"
+import { SignupDataDTO, SignupSchema } from "./lib/signup.schema"
 
 import { BaseFormProvider, PasswordIcon, TextInputBase } from "~/shared/ui"
 import { useCustomForm, usePasswordType } from "~/shared/utils"
 
-export const LoginFeature = () => {
-  const form = useCustomForm({ defaultValues: { email: "", password: "" } }, LoginSchema)
+export const SignupFeature = () => {
+  const form = useCustomForm({ defaultValues: { email: "", password: "" } }, SignupSchema)
   const { handleSubmit } = form
 
   const [passwordType, onPasswordIconClick] = usePasswordType()
+  const [confirmPasswordType, onConfirmPasswordIconClick] = usePasswordType()
 
-  const onSubmit = (data: LoginDataDTO) => {
+  const onSubmit = (data: SignupDataDTO) => {
     console.log(data)
   }
 
@@ -25,6 +26,8 @@ export const LoginFeature = () => {
           justifyContent: "center",
           alignItems: "center",
         }}>
+        <TextInputBase type="text" name="firstname" placeholder="Firstname" variant="outlined" sx={{ width: 300 }} />
+        <TextInputBase type="text" name="lastname" placeholder="Lastname" variant="outlined" sx={{ width: 300 }} />
         <TextInputBase type="text" name="email" placeholder="email" variant="outlined" sx={{ width: 300 }} />
         <TextInputBase
           type={passwordType}
@@ -33,6 +36,16 @@ export const LoginFeature = () => {
           variant="outlined"
           sx={{ width: 300 }}
           rightIconAdornment={<PasswordIcon isSecure={passwordType === "password"} onClick={onPasswordIconClick} />}
+        />
+        <TextInputBase
+          type={confirmPasswordType}
+          name="confirmPassword"
+          placeholder="confirm password"
+          variant="outlined"
+          sx={{ width: 300 }}
+          rightIconAdornment={
+            <PasswordIcon isSecure={confirmPasswordType === "password"} onClick={onConfirmPasswordIconClick} />
+          }
         />
         <Button variant="contained" type="submit">
           Submit
