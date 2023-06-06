@@ -1,12 +1,13 @@
-import { FormControl, FormHelperText, InputLabel, OutlinedInput, TextField } from "@mui/material"
+import { FormControl, FormHelperText, InputAdornment, InputLabel, OutlinedInput, TextField } from "@mui/material"
 import { useController, useFormContext } from "react-hook-form"
 
 type Props = React.ComponentProps<typeof TextField> & {
   name: string
+  rightIconAdornment?: React.ReactNode
 }
 
 export const TextInputBase = (props: Props) => {
-  const { name, onChange, sx } = props
+  const { name, onChange, sx, rightIconAdornment, type } = props
 
   const { control } = useFormContext()
   const {
@@ -27,7 +28,13 @@ export const TextInputBase = (props: Props) => {
   return (
     <FormControl sx={sx} error={invalid}>
       <InputLabel htmlFor="base-text-input">{name}</InputLabel>
-      <OutlinedInput id="base-text-input" label={name} onChange={onChangeHanlder} />
+      <OutlinedInput
+        id="base-text-input"
+        type={type}
+        label={name}
+        onChange={onChangeHanlder}
+        endAdornment={<InputAdornment position="end">{rightIconAdornment}</InputAdornment>}
+      />
       <FormHelperText id="base-text-input">{error?.message}</FormHelperText>
     </FormControl>
   )
