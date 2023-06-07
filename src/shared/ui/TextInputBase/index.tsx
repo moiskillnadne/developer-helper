@@ -35,7 +35,9 @@ export const TextInputBase = (props: Props) => {
         onChange={onChangeHanlder}
         endAdornment={<InputAdornment position="end">{rightIconAdornment}</InputAdornment>}
       />
-      <FormHelperText id="base-text-input">{error?.message}</FormHelperText>
+      <FormHelperText id="base-text-input" sx={{ minHeight: 20 }}>
+        {error?.message}
+      </FormHelperText>
     </FormControl>
   )
 }
