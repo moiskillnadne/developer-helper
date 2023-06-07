@@ -1,6 +1,10 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit"
 
-export const rootReducer = combineReducers({})
+import { quizModel } from "../entities/quiz"
+
+export const rootReducer = combineReducers({
+  quiz: quizModel.reducer,
+})
 
 const store = configureStore({
   reducer: rootReducer,

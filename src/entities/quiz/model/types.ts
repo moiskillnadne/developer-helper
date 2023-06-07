@@ -1,0 +1,23 @@
+export type QuizInitialState = {
+  demoQuiz: Quiz | null
+}
+
+export type Quiz = {
+  id: string
+  title: string
+  description: string
+  questions: Question[]
+}
+
+export type Question = {
+  id: string
+  question: string
+  description: string
+  options: Option[]
+  correctOptionId: string
+}
+
+export type Option = {
+  id: string
+  name: string
+}
