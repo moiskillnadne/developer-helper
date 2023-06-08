@@ -11,6 +11,7 @@ export type Quiz = {
 
 export type Question = {
   id: string
+  order: number
   question: string
   description: string
   options: Option[]
