@@ -4,6 +4,7 @@ import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
 
 import { headerHeight } from "~/shared/utils"
+import { DemoQuiz } from "~/widgets/DemoQuiz"
 
 export const LandingPage = () => {
   const welcomePhrase = "Улучши свои программерские навыки и получи работу"
@@ -40,6 +41,18 @@ export const LandingPage = () => {
           }}>
           <KeyboardArrowDownIcon />
         </Box>
+      </Container>
+
+      <Container
+        sx={{
+          height: "100vh",
+          display: "grid",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyItems: "center",
+          gridTemplateRows: "1fr 100px",
+        }}>
+        <DemoQuiz />
       </Container>
     </Container>
   )
