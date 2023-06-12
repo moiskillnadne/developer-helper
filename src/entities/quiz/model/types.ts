@@ -16,6 +16,7 @@ export type Question = {
   description: string
   options: Option[]
   correctOptionId: string
+  answer: string | null // optionId
 }
 
 export type Option = {
