@@ -10,7 +10,7 @@ const mockQuiz: quizModel.Quiz = {
       order: 1,
       question: "Demo Question 1",
       description: "This is a demo question",
-      correctOptionId: "1",
+      correctOptionId: "3b5fad3f-538b-4de0-8cb9-4beca7a02865",
       answer: null,
       options: [
         {
@@ -36,7 +36,7 @@ const mockQuiz: quizModel.Quiz = {
       order: 2,
       question: "Demo Question 2",
       description: "This is a demo question",
-      correctOptionId: "3",
+      correctOptionId: "830b7df9-ace0-4fbf-bb47-7a5c6903cca3",
       answer: null,
       options: [
         {
@@ -62,7 +62,7 @@ const mockQuiz: quizModel.Quiz = {
       order: 3,
       question: "Demo Question 3",
       description: "This is a demo question",
-      correctOptionId: "4",
+      correctOptionId: "a4e3aabf-a60f-4bd3-bcaa-2534ea0af40e",
       answer: null,
       options: [
         {

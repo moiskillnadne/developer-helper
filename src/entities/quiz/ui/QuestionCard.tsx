@@ -14,11 +14,13 @@ import { Question } from "../model"
 
 type Props = {
   question: Question
+  step: number
+  quizLength: number
   onChange: (value: string) => void
 }
 
 export const QuestionCard = (props: Props) => {
-  const { question, onChange } = props
+  const { question, onChange, step, quizLength } = props
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     return onChange(e.target.value)
@@ -31,6 +33,9 @@ export const QuestionCard = (props: Props) => {
           <Typography gutterBottom variant="h5" component="div">
             {question.question}
           </Typography>
+          <Typography gutterBottom variant="subtitle1" component="div">
+            {`${step} / ${quizLength}`}
+          </Typography>
         </Box>
         <Typography variant="body2" color="text.secondary">
           {question.description}
@@ -42,9 +47,9 @@ export const QuestionCard = (props: Props) => {
             aria-labelledby={`question-${question.id}-radio-buttons-group-label`}
             name="radio-buttons-group"
             onChange={onChangeHandler}>
-            {question.options.map(option => (
-              <FormControlLabel key={option.id} value={option.id} control={<Radio />} label={option.name} />
-            ))}
+            {question.options.map(option => {
+              return <FormControlLabel key={option.id} value={option.id} control={<Radio />} label={option.name} />
+            })}
           </RadioGroup>
         </FormControl>
       </CardActions>

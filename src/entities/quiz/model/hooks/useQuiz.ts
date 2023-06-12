@@ -12,6 +12,7 @@ type Props = {
 type Return = {
   currentQuestion: Question | null
   isLastQuestion: boolean
+  step: number
   nextStep: () => void
   saveQuestionAnswer: (payload: SetQuestionAnswerPayload) => void
 }
@@ -40,6 +41,7 @@ export const useDemoQuiz = ({ quiz }: Props): Return => {
   return {
     currentQuestion,
     isLastQuestion,
+    step,
     nextStep,
     saveQuestionAnswer,
   }
