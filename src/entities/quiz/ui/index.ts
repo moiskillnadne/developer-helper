@@ -1,1 +1,2 @@
-export * from "./QuizCard"
+export * from "./QuestionCard"
+export * from "./QuizStepper"
