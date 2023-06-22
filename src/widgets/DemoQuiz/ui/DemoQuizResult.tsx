@@ -1,7 +1,7 @@
-import { Box, Button, Card, CardContent, Divider, Typography } from "@mui/material"
+import { Box, Card, CardContent, Divider, Typography } from "@mui/material"
 
 import { quizModel } from "~/entities/quiz"
-import { ROUTES } from "~/shared/utils"
+import { SignupButton } from "~/features/Signup"
 
 type Props = {
   quizId: string
@@ -33,14 +33,7 @@ export const DemoQuizResult = ({ quizId }: Props) => {
         </Typography>
 
         <Box display="flex" justifyContent="center" marginTop={1}>
-          <Button
-            variant="contained"
-            href={ROUTES.signup.path}
-            sx={{
-              color: "black",
-            }}>
-            Зарегестрироваться
-          </Button>
+          <SignupButton />
         </Box>
       </CardContent>
     </Card>

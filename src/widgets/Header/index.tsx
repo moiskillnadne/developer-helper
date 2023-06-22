@@ -1,10 +1,11 @@
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
 import Container from "@mui/material/Container"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 
+import { LoginButton } from "~/features/Login"
+import { SignupButton } from "~/features/Signup"
 import { ROUTES, headerHeight } from "~/shared/utils"
 
 export const Header = () => {
@@ -44,22 +45,8 @@ export const Header = () => {
               display: "flex",
               gap: 2,
             }}>
-            <Button
-              variant="text"
-              href={ROUTES.login.path}
-              sx={{
-                color: "black",
-              }}>
-              Войти
-            </Button>
-            <Button
-              variant="contained"
-              href={ROUTES.signup.path}
-              sx={{
-                color: "black",
-              }}>
-              Зарегестрироваться
-            </Button>
+            <LoginButton />
+            <SignupButton />
           </Box>
         </Toolbar>
       </Container>
