@@ -1,91 +1,87 @@
-import { QuizStepper, quizModel } from "~/entities/quiz"
+import { quizModel } from "~/entities/quiz"
 
-const mockQuiz: quizModel.Quiz = {
+export const mockQuiz: quizModel.Quiz = {
   id: "1",
-  title: "Demo Quiz",
-  description: "This is a demo quiz",
+  title: "Демонстрационый квиз",
+  description: "Это ознакомительный квиз, чтобы проверить ваши знания",
   questions: [
     {
       id: "1",
       order: 1,
-      question: "Demo Question 1",
-      description: "This is a demo question",
+      question: "HTML Тэги",
+      description: "За что отвечает тэг <br>?",
       correctOptionId: "3b5fad3f-538b-4de0-8cb9-4beca7a02865",
       answer: null,
       options: [
         {
           id: "3b5fad3f-538b-4de0-8cb9-4beca7a02865",
-          name: "Demo Answer 1",
+          name: "Перенос строки",
         },
         {
           id: "a3468073-734c-46e7-95e9-d3efe6760ce3",
-          name: "Demo Answer 2",
+          name: "Создание таблицы",
         },
         {
           id: "e6cc2eb0-ab5b-4ba8-bd0f-ece3454ddae5",
-          name: "Demo Answer 3",
+          name: "Разделение страницы на части",
         },
         {
           id: "7b378357-e43b-4479-ba9f-d287c24291bd",
-          name: "Demo Answer 4",
+          name: "Редирект на другую страницу",
         },
       ],
     },
     {
       id: "2",
       order: 2,
-      question: "Demo Question 2",
-      description: "This is a demo question",
+      question: "Основы JavaScript",
+      description: "Каким типом является NaN?",
       correctOptionId: "830b7df9-ace0-4fbf-bb47-7a5c6903cca3",
       answer: null,
       options: [
         {
           id: "830b7df9-ace0-4fbf-bb47-7a5c6903cca3",
-          name: "Demo Answer 1",
+          name: "Number",
         },
         {
-          id: "dc30587a-b6fd-45df-9439-99660b4637bc",
-          name: "Demo Answer 2",
+          id: "830b7df9-ace0-4fbf-bb47-3c5c6903cca3",
+          name: "String",
         },
         {
-          id: "ceec1689-b08f-4785-bab0-196acc284311",
-          name: "Demo Answer 3",
+          id: "832a7df9-ace0-4fbf-bb47-7a5c6903cca3",
+          name: "Boolean",
         },
         {
-          id: "256b17b8-6db1-42a4-a297-7bbfcc3f00bd",
-          name: "Demo Answer 4",
+          id: "830b7df9-bee0-4fbf-bb47-7a5c6903cca3",
+          name: "NaN",
         },
       ],
     },
     {
       id: "3",
       order: 3,
-      question: "Demo Question 3",
-      description: "This is a demo question",
+      question: "Основы CSS",
+      description: "Как добавить внешний отступ в CSS?",
       correctOptionId: "a4e3aabf-a60f-4bd3-bcaa-2534ea0af40e",
       answer: null,
       options: [
         {
           id: "a769efcd-1389-4bdf-8916-b3030cf48ab2",
-          name: "Demo Answer 1",
+          name: "Padding",
         },
         {
           id: "442aa49f-765e-42a7-a559-b7a63f268ade",
-          name: "Demo Answer 2",
+          name: "Space",
         },
         {
           id: "1477de8b-7c9c-46a5-8b86-8eb798705cc3",
-          name: "Demo Answer 3",
+          name: "Space-around",
         },
         {
           id: "a4e3aabf-a60f-4bd3-bcaa-2534ea0af40e",
-          name: "Demo Answer 4",
+          name: "Margin",
         },
       ],
     },
   ],
-}
-
-export const DemoQuiz = () => {
-  return <QuizStepper quiz={mockQuiz} />
 }

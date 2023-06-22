@@ -1,32 +1,38 @@
-import { animated, useSpring } from "@react-spring/web"
-
 import { QuestionCard } from "./QuestionCard"
 import { Quiz } from "../model"
 import { useDemoQuiz } from "../model/hooks/useQuiz"
 
+import { useFadeOutOnAnimation } from "~/shared/utils"
+
 type Props = {
   quiz: Quiz
+  onComplete?: () => void
 }
 
-export const QuizStepper = ({ quiz }: Props) => {
-  const [springs, api] = useSpring(() => ({
-    from: { opacity: 1 },
-  }))
+export const QuizStepper = ({ quiz, onComplete }: Props) => {
+  const { startFadeOutInAnimation, endFadeOutInAnimation, springs } = useFadeOutOnAnimation()
 
-  const { currentQuestion, nextStep, saveQuestionAnswer, step } = useDemoQuiz({ quiz })
+  const { currentQuestion, nextStep, saveQuestionAnswer, step, hasNextQuestion } = useDemoQuiz({ quiz })
 
   const onChange = (value: string) => {
     if (!currentQuestion) return
 
     saveQuestionAnswer({
+      quizId: quiz.id,
       questionId: currentQuestion.id,
       answer: value,
     })
 
-    api.start({ from: { opacity: 1 }, to: { opacity: 0 }, delay: 500, config: { duration: 500 } })
+    startFadeOutInAnimation()
     setTimeout(() => {
-      nextStep()
-      api.start({ from: { opacity: 0 }, to: { opacity: 1 }, config: { duration: 500 } })
+      if (hasNextQuestion) {
+        nextStep()
+        endFadeOutInAnimation()
+      }
+
+      if (!hasNextQuestion && onComplete) {
+        return onComplete()
+      }
     }, 1000)
   }
 
@@ -35,8 +41,12 @@ export const QuizStepper = ({ quiz }: Props) => {
   }
 
   return (
-    <animated.div style={{ ...springs }}>
-      <QuestionCard question={currentQuestion} onChange={onChange} step={step + 1} quizLength={quiz.questions.length} />
-    </animated.div>
+    <QuestionCard
+      question={currentQuestion}
+      onChange={onChange}
+      step={step + 1}
+      quizLength={quiz.questions.length}
+      springs={springs}
+    />
   )
 }
