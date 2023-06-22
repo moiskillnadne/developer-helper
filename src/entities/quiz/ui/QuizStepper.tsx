@@ -1,8 +1,8 @@
-import { animated, useSpring } from "@react-spring/web"
-
 import { QuestionCard } from "./QuestionCard"
 import { Quiz } from "../model"
 import { useDemoQuiz } from "../model/hooks/useQuiz"
+
+import { useFadeOutOnAnimation } from "~/shared/utils"
 
 type Props = {
   quiz: Quiz
@@ -10,9 +10,7 @@ type Props = {
 }
 
 export const QuizStepper = ({ quiz, onComplete }: Props) => {
-  const [springs, api] = useSpring(() => ({
-    from: { opacity: 1 },
-  }))
+  const { startFadeOutInAnimation, endFadeOutInAnimation, springs } = useFadeOutOnAnimation()
 
   const { currentQuestion, nextStep, saveQuestionAnswer, step, hasNextQuestion } = useDemoQuiz({ quiz })
 
@@ -25,11 +23,11 @@ export const QuizStepper = ({ quiz, onComplete }: Props) => {
       answer: value,
     })
 
-    api.start({ from: { opacity: 1 }, to: { opacity: 0 }, delay: 500, config: { duration: 500 } })
+    startFadeOutInAnimation()
     setTimeout(() => {
       if (hasNextQuestion) {
         nextStep()
-        api.start({ from: { opacity: 0 }, to: { opacity: 1 }, config: { duration: 500 } })
+        endFadeOutInAnimation()
       }
 
       if (!hasNextQuestion && onComplete) {
@@ -43,8 +41,12 @@ export const QuizStepper = ({ quiz, onComplete }: Props) => {
   }
 
   return (
-    <animated.div style={{ ...springs }}>
-      <QuestionCard question={currentQuestion} onChange={onChange} step={step + 1} quizLength={quiz.questions.length} />
-    </animated.div>
+    <QuestionCard
+      question={currentQuestion}
+      onChange={onChange}
+      step={step + 1}
+      quizLength={quiz.questions.length}
+      springs={springs}
+    />
   )
 }

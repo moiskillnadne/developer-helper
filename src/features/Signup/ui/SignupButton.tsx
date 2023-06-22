@@ -10,7 +10,7 @@ export const SignupButton = () => {
       sx={{
         color: "black",
       }}>
-      Зарегестрироваться
+      Зарегистрироваться
     </Button>
   )
 }

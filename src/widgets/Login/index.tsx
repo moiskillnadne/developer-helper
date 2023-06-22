@@ -15,10 +15,11 @@ export const LoginWidget = () => {
       <Box>
         <Typography
           variant="h3"
+          marginBottom={2}
           sx={{
             textAlign: "center",
           }}>
-          Login
+          Войти
         </Typography>
         <LoginFeature />
       </Box>
