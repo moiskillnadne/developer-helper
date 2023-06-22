@@ -50,7 +50,7 @@ export const Header = () => {
               sx={{
                 color: "black",
               }}>
-              Login
+              Войти
             </Button>
             <Button
               variant="contained"
@@ -58,7 +58,7 @@ export const Header = () => {
               sx={{
                 color: "black",
               }}>
-              Sign up
+              Зарегестрироваться
             </Button>
           </Box>
         </Toolbar>

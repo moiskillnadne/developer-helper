@@ -1,5 +1,5 @@
 export type QuizInitialState = {
-  demoQuiz: Quiz | null
+  active: Record<string, Quiz> // string = quizId
 }
 
 export type Quiz = {

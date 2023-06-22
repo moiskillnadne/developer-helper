@@ -4,26 +4,28 @@ import { SetQuestionAnswerPayload } from "./payload.types"
 import { Quiz, QuizInitialState } from "./types"
 
 const initialState: QuizInitialState = {
-  demoQuiz: null,
+  active: {},
 }
 
 export const quizSlice = createSlice({
   name: "quiz",
   initialState,
   reducers: {
-    setDemoQuiz: (state, action: PayloadAction<Quiz>) => {
-      state.demoQuiz = action.payload
+    setQuiz: (state, action: PayloadAction<Quiz>) => {
+      state.active[action.payload.id] = action.payload
     },
-    saveDemoQuizAnswerByQuestionId: (state, action: PayloadAction<SetQuestionAnswerPayload>) => {
-      const { questionId, answer } = action.payload
+    saveQuizAnswerByIds: (state, action: PayloadAction<SetQuestionAnswerPayload>) => {
+      const { questionId, answer, quizId } = action.payload
 
-      if (!state.demoQuiz) return
+      const foundQuiz = state.active[quizId]
 
-      const questionIndex = state.demoQuiz.questions.findIndex(question => question.id === questionId)
+      if (!foundQuiz) return
+
+      const questionIndex = foundQuiz.questions.findIndex(question => question.id === questionId)
 
       if (questionIndex === -1) return
 
-      state.demoQuiz.questions[questionIndex].answer = answer
+      state.active[quizId].questions[questionIndex].answer = answer
     },
   },
 })

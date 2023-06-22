@@ -1,6 +1,6 @@
-import { QuizStepper, quizModel } from "~/entities/quiz"
+import { quizModel } from "~/entities/quiz"
 
-const mockQuiz: quizModel.Quiz = {
+export const mockQuiz: quizModel.Quiz = {
   id: "1",
   title: "Demo Quiz",
   description: "This is a demo quiz",
@@ -84,8 +84,4 @@ const mockQuiz: quizModel.Quiz = {
       ],
     },
   ],
-}
-
-export const DemoQuiz = () => {
-  return <QuizStepper quiz={mockQuiz} />
 }
