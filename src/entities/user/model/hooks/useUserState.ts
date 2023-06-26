@@ -18,5 +18,9 @@ export const useUserState = () => {
     [dispatch],
   )
 
-  return { user, setUser }
+  const clearUser = useCallback(() => {
+    dispatch(actions.clearUser())
+  }, [dispatch])
+
+  return { user, setUser, clearUser }
 }

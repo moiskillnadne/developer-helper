@@ -20,7 +20,7 @@ export const SignupFeature = () => {
     isLoading,
     isSuccess,
   } = useSignupMutation({
-    onSuccess(data) {
+    onSuccess() {
       setTimeout(() => {
         navigate(ROUTES.login.path)
       }, 350)

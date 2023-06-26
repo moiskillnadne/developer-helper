@@ -4,11 +4,15 @@ import Container from "@mui/material/Container"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 
+import { userModel } from "~/entities/user"
 import { LoginButton } from "~/features/Login"
+import { LogoutButton } from "~/features/Logout"
 import { SignupButton } from "~/features/Signup"
 import { ROUTES, headerHeight } from "~/shared/utils"
 
 export const Header = () => {
+  const { isUserAuthenticated } = userModel.useAuthGuard()
+
   return (
     <AppBar
       position="static"
@@ -40,14 +44,18 @@ export const Header = () => {
             Developer Helper
           </Typography>
 
-          <Box
-            sx={{
-              display: "flex",
-              gap: 2,
-            }}>
-            <LoginButton />
-            <SignupButton />
-          </Box>
+          {!isUserAuthenticated && (
+            <Box
+              sx={{
+                display: "flex",
+                gap: 2,
+              }}>
+              <LoginButton />
+              <SignupButton />
+            </Box>
+          )}
+
+          {isUserAuthenticated && <LogoutButton />}
         </Toolbar>
       </Container>
     </AppBar>

@@ -5,11 +5,13 @@ import { useLoginMutation } from "../lib/useLoginMutation"
 
 import { secureTokensStorage, userModel } from "~/entities/user"
 import { BaseFormProvider, BasicButton, LoadingRound, PasswordIcon, SuccessRound, TextInputBase } from "~/shared/ui"
-import { useCustomForm, usePasswordType } from "~/shared/utils"
+import { ROUTES, useCustomForm, useCustomNavigator, usePasswordType } from "~/shared/utils"
 
 export const LoginFeature = () => {
   const form = useCustomForm({ defaultValues: { email: "", password: "" } }, LoginSchema)
   const { handleSubmit } = form
+
+  const { navigate } = useCustomNavigator()
 
   const { setUser } = userModel.useUserState()
 
@@ -25,6 +27,8 @@ export const LoginFeature = () => {
 
       setUser({ id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName })
       secureTokensStorage.setTokens({ accessToken, idToken, refreshToken })
+
+      return navigate(ROUTES.dashboard.path)
     },
   })
 

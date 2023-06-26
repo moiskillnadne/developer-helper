@@ -8,4 +8,8 @@ export const ROUTES = {
   signup: {
     path: "/signup",
   },
+
+  dashboard: {
+    path: "/dashboard",
+  },
 }

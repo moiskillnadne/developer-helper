@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 import { User, UserInitialState } from "./types"
 
 const initialState: UserInitialState = {
-  user: null,
+  details: null,
 }
 
 export const userSlice = createSlice({
@@ -11,7 +11,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, actions: PayloadAction<User>) => {
-      state.user = actions.payload
+      state.details = actions.payload
+    },
+    clearUser: () => {
+      return initialState
     },
   },
 })

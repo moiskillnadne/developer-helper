@@ -1,5 +1,5 @@
 export type UserInitialState = {
-  user: User | null
+  details: User | null
 }
 
 export type User = {
