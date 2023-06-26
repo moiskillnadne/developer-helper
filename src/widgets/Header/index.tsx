@@ -22,12 +22,21 @@ export const Header = () => {
       sx={{
         height: headerHeight,
       }}>
-      <Container maxWidth="xl">
+      <Box
+        sx={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}>
         <Toolbar
           disableGutters
           sx={{
             display: "flex",
+            width: "100%",
             justifyContent: "space-between",
+            paddingLeft: 1,
+            paddingRight: 1,
           }}>
           <Typography
             variant="h6"
@@ -37,7 +46,7 @@ export const Header = () => {
             className="effect-shine"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
+              display: { md: "flex" },
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -59,7 +68,7 @@ export const Header = () => {
 
           {isUserAuthenticated && <LogoutButton />}
         </Toolbar>
-      </Container>
+      </Box>
     </AppBar>
   )
 }
