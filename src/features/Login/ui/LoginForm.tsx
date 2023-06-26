@@ -1,6 +1,7 @@
 import { Box, Button } from "@mui/material"
 
 import { LoginDataDTO, LoginSchema } from "../lib/login.schema"
+import { useLoginMutation } from "../lib/useLoginMutation"
 
 import { BaseFormProvider, PasswordIcon, TextInputBase } from "~/shared/ui"
 import { useCustomForm, usePasswordType } from "~/shared/utils"
@@ -11,8 +12,14 @@ export const LoginFeature = () => {
 
   const [passwordType, onPasswordIconClick] = usePasswordType()
 
+  const { mutate: login, isLoading } = useLoginMutation({
+    onSuccess: () => {
+      console.log("success")
+    },
+  })
+
   const onSubmit = (data: LoginDataDTO) => {
-    console.log(data)
+    return login(data)
   }
 
   return (
@@ -34,7 +41,7 @@ export const LoginFeature = () => {
           sx={{ width: 300 }}
           rightIconAdornment={<PasswordIcon isSecure={passwordType === "password"} onClick={onPasswordIconClick} />}
         />
-        <Button variant="contained" type="submit">
+        <Button variant="contained" type="submit" disabled={isLoading}>
           Submit
         </Button>
       </Box>
