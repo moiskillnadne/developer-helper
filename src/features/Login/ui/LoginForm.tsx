@@ -3,7 +3,7 @@ import { Box, Button } from "@mui/material"
 import { LoginDataDTO, LoginSchema } from "../lib/login.schema"
 import { useLoginMutation } from "../lib/useLoginMutation"
 
-import { BaseFormProvider, PasswordIcon, TextInputBase } from "~/shared/ui"
+import { BaseFormProvider, BasicButton, LoadingRound, PasswordIcon, SuccessRound, TextInputBase } from "~/shared/ui"
 import { useCustomForm, usePasswordType } from "~/shared/utils"
 
 export const LoginFeature = () => {
@@ -12,7 +12,11 @@ export const LoginFeature = () => {
 
   const [passwordType, onPasswordIconClick] = usePasswordType()
 
-  const { mutate: login, isLoading } = useLoginMutation({
+  const {
+    mutate: login,
+    isLoading,
+    isSuccess,
+  } = useLoginMutation({
     onSuccess(data) {
       // Save to local storage
       // Save to redux
@@ -43,9 +47,23 @@ export const LoginFeature = () => {
           sx={{ width: 300 }}
           rightIconAdornment={<PasswordIcon isSecure={passwordType === "password"} onClick={onPasswordIconClick} />}
         />
-        <Button variant="contained" type="submit" disabled={isLoading}>
+        <BasicButton
+          variant="contained"
+          type="submit"
+          isDisabled={isLoading}
+          isLoading={{
+            status: isLoading,
+            icon: <LoadingRound />,
+          }}
+          isSuccess={{
+            status: isSuccess,
+            icon: <SuccessRound />,
+          }}
+          sx={{
+            minWidth: 200,
+          }}>
           Submit
-        </Button>
+        </BasicButton>
       </Box>
     </BaseFormProvider>
   )

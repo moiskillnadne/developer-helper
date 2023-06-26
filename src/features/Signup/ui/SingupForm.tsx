@@ -39,10 +39,32 @@ export const SignupFeature = () => {
           justifyContent: "center",
           alignItems: "center",
         }}>
-        <TextInputBase type="text" name="firstName" placeholder="Firstname" variant="outlined" sx={{ width: 300 }} />
-        <TextInputBase type="text" name="lastName" placeholder="Lastname" variant="outlined" sx={{ width: 300 }} />
-        <TextInputBase type="text" name="email" placeholder="email" variant="outlined" sx={{ width: 300 }} />
         <TextInputBase
+          id="firstName-text"
+          type="text"
+          name="firstName"
+          placeholder="Firstname"
+          variant="outlined"
+          sx={{ width: 300 }}
+        />
+        <TextInputBase
+          id="lastNAme-text"
+          type="text"
+          name="lastName"
+          placeholder="Lastname"
+          variant="outlined"
+          sx={{ width: 300 }}
+        />
+        <TextInputBase
+          id="email-text"
+          type="text"
+          name="email"
+          placeholder="email"
+          variant="outlined"
+          sx={{ width: 300 }}
+        />
+        <TextInputBase
+          id="password-text"
           type={passwordType}
           name="password"
           placeholder="password"
@@ -51,6 +73,7 @@ export const SignupFeature = () => {
           rightIconAdornment={<PasswordIcon isSecure={passwordType === "password"} onClick={onPasswordIconClick} />}
         />
         <TextInputBase
+          id="password-confirm-text"
           type={confirmPasswordType}
           name="confirmPassword"
           placeholder="confirm password"
