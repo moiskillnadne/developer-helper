@@ -1,3 +1,5 @@
 export * from "./FormProvider"
 export * from "./TextInputBase"
 export * from "./PasswordIcon"
+export * from "./Button"
+export * from "./Icons"

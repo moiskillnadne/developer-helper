@@ -1,5 +1,5 @@
 import { AppLayout } from "./layout"
-import { CustomThemeProvider, ReduxProvider, RouterProvider } from "./providers"
+import { CustomThemeProvider, ReactQueryProvider, ReduxProvider, RouterProvider } from "./providers"
 
 import { Router } from "~/pages"
 
@@ -11,9 +11,11 @@ function App() {
       <CustomThemeProvider>
         <RouterProvider>
           <ReduxProvider>
-            <AppLayout>
-              <Router />
-            </AppLayout>
+            <ReactQueryProvider>
+              <AppLayout>
+                <Router />
+              </AppLayout>
+            </ReactQueryProvider>
           </ReduxProvider>
         </RouterProvider>
       </CustomThemeProvider>
