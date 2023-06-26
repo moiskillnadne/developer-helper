@@ -46,11 +46,11 @@ export const LoginFeature = () => {
           justifyContent: "center",
           alignItems: "center",
         }}>
-        <TextInputBase type="text" name="email" placeholder="email" variant="outlined" sx={{ width: 300 }} />
+        <TextInputBase type="text" name="email" placeholder="Email" variant="outlined" sx={{ width: 300 }} />
         <TextInputBase
           type={passwordType}
           name="password"
-          placeholder="password"
+          placeholder="Пароль"
           variant="outlined"
           sx={{ width: 300 }}
           rightIconAdornment={<PasswordIcon isSecure={passwordType === "password"} onClick={onPasswordIconClick} />}
@@ -70,7 +70,7 @@ export const LoginFeature = () => {
           sx={{
             minWidth: 200,
           }}>
-          Submit
+          Войти
         </BasicButton>
       </Box>
     </BaseFormProvider>

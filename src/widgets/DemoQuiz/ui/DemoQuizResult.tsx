@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Divider, Typography } from "@mui/material"
+import { Box, Card, CardContent, Typography } from "@mui/material"
 
 import { quizModel } from "~/entities/quiz"
 import { SignupButton } from "~/features/Signup"
@@ -13,20 +13,20 @@ export const DemoQuizResult = ({ quizId }: Props) => {
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5" sx={{ marginBottom: 2 }}>
+        <Typography variant="h3" sx={{ marginBottom: 2 }}>
           Поздравляем!
         </Typography>
-        <Typography variant="subtitle1" sx={{ marginBottom: 2 }}>
+        <Typography variant="subtitle1" sx={{ marginBottom: 2, color: "secondary.main" }}>
           Вы успешно прошли ваш первый квиз! Вот ваша статистика:
         </Typography>
 
-        <Typography variant="subtitle2">{`Количество вопросов: ${questionsCount}`}</Typography>
-        <Typography variant="subtitle2">{`Количество правильных ответов: ${correctAnswersCount}`}</Typography>
-        <Typography variant="subtitle2">{`Процент правильных ответов: ${
-          ((correctAnswersCount / questionsCount) * 100).toFixed(2) || 0
-        }%`}</Typography>
-
-        <Divider />
+        <Box sx={{ borderLeft: "2px solid black", paddingLeft: 2 }}>
+          <Typography variant="subtitle2">{`Количество вопросов: ${questionsCount}`}</Typography>
+          <Typography variant="subtitle2">{`Количество правильных ответов: ${correctAnswersCount}`}</Typography>
+          <Typography variant="subtitle2">{`Процент правильных ответов: ${
+            ((correctAnswersCount / questionsCount) * 100).toFixed(2) || 0
+          }%`}</Typography>
+        </Box>
 
         <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
           Зарегистрируйтесь чтобы пройти другие тесты и улучшить свои навыки.
