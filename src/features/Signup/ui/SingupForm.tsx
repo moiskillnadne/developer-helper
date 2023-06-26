@@ -1,9 +1,9 @@
-import { Box, Button } from "@mui/material"
+import { Box } from "@mui/material"
 
 import { SignupDataDTO, SignupSchema } from "../lib/signup.schema"
 import { useSignupMutation } from "../lib/useSignupMutation"
 
-import { BaseFormProvider, PasswordIcon, TextInputBase } from "~/shared/ui"
+import { BaseFormProvider, BasicButton, LoadingRound, PasswordIcon, SuccessRound, TextInputBase } from "~/shared/ui"
 import { ROUTES, useCustomForm, useCustomNavigator, usePasswordType } from "~/shared/utils"
 
 export const SignupFeature = () => {
@@ -15,11 +15,15 @@ export const SignupFeature = () => {
 
   const { navigate } = useCustomNavigator()
 
-  const { mutate: signup, isLoading } = useSignupMutation({
+  const {
+    mutate: signup,
+    isLoading,
+    isSuccess,
+  } = useSignupMutation({
     onSuccess(data) {
-      console.log(data)
-
-      return navigate(ROUTES.login.path)
+      setTimeout(() => {
+        navigate(ROUTES.login.path)
+      }, 350)
     },
   })
 
@@ -83,9 +87,23 @@ export const SignupFeature = () => {
             <PasswordIcon isSecure={confirmPasswordType === "password"} onClick={onConfirmPasswordIconClick} />
           }
         />
-        <Button variant="contained" type="submit" disabled={isLoading}>
+        <BasicButton
+          variant="contained"
+          type="submit"
+          isDisabled={isLoading}
+          isLoading={{
+            status: isLoading,
+            icon: <LoadingRound />,
+          }}
+          isSuccess={{
+            status: isSuccess,
+            icon: <SuccessRound />,
+          }}
+          sx={{
+            minWidth: 200,
+          }}>
           Submit
-        </Button>
+        </BasicButton>
       </Box>
     </BaseFormProvider>
   )
