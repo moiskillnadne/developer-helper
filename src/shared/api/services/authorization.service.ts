@@ -1,5 +1,12 @@
 import axiosService from "../axios"
-import { LoginPayload, LoginSuccessResponse, SignupPayload, SignupSuccessResponse } from "../types"
+import {
+  LoginPayload,
+  LoginSuccessResponse,
+  RefreshTokensPayload,
+  RefreshTokensSuccessResponse,
+  SignupPayload,
+  SignupSuccessResponse,
+} from "../types"
 
 function authorizationService() {
   return {
@@ -8,6 +15,9 @@ function authorizationService() {
     },
     signup(data: SignupPayload) {
       return axiosService.post<SignupSuccessResponse>("/signup", data)
+    },
+    refreshTokens: (data: RefreshTokensPayload) => {
+      return axiosService.post<RefreshTokensSuccessResponse>("/refresh-tokens", data)
     },
   }
 }

@@ -36,3 +36,13 @@ export type SignupSuccessResponse = BaseSuccessResponse<{
   cognitoId: string
   username: string
 }>
+
+export type RefreshTokensPayload = {
+  refreshToken: string
+}
+
+export type RefreshTokensSuccessResponse = BaseSuccessResponse<{
+  idToken: string
+  accessToken: string
+  refreshToken: string
+}>

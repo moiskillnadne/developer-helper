@@ -3,12 +3,15 @@ import { Box } from "@mui/material"
 import { LoginDataDTO, LoginSchema } from "../lib/login.schema"
 import { useLoginMutation } from "../lib/useLoginMutation"
 
+import { secureTokensStorage, userModel } from "~/entities/user"
 import { BaseFormProvider, BasicButton, LoadingRound, PasswordIcon, SuccessRound, TextInputBase } from "~/shared/ui"
 import { useCustomForm, usePasswordType } from "~/shared/utils"
 
 export const LoginFeature = () => {
   const form = useCustomForm({ defaultValues: { email: "", password: "" } }, LoginSchema)
   const { handleSubmit } = form
+
+  const { setUser } = userModel.useUserState()
 
   const [passwordType, onPasswordIconClick] = usePasswordType()
 
@@ -18,9 +21,10 @@ export const LoginFeature = () => {
     isSuccess,
   } = useLoginMutation({
     onSuccess(data) {
-      // Save to local storage
-      // Save to redux
-      console.log(data)
+      const { user, accessToken, idToken, refreshToken } = data.data.details
+
+      setUser({ id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName })
+      secureTokensStorage.setTokens({ accessToken, idToken, refreshToken })
     },
   })
 
