@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Nunito";
+  src: url("./Nunito-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./Nunito-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./Nunito-ExtraBold.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./Nunito-ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Nunito";
+  src: url("./Nunito-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+  font-display: swap;
+}

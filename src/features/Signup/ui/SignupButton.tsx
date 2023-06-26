@@ -8,7 +8,7 @@ export const SignupButton = () => {
       variant="contained"
       href={ROUTES.signup.path}
       sx={{
-        color: "black",
+        color: "white",
       }}>
       Зарегистрироваться
     </Button>

@@ -10,6 +10,8 @@ import { LogoutButton } from "~/features/Logout"
 import { SignupButton } from "~/features/Signup"
 import { ROUTES, headerHeight } from "~/shared/utils"
 
+import "./style.css"
+
 export const Header = () => {
   const { isUserAuthenticated } = userModel.useAuthGuard()
 
@@ -32,10 +34,10 @@ export const Header = () => {
             noWrap
             component="a"
             href={ROUTES.landing.path}
+            className="effect-shine"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
