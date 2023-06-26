@@ -4,10 +4,10 @@ import { LoginPayload, LoginSuccessResponse, SignupPayload, SignupSuccessRespons
 function authorizationService() {
   return {
     login(data: LoginPayload) {
-      return axiosService.post<LoginSuccessResponse>("/auth/login", data)
+      return axiosService.post<LoginSuccessResponse>("/login", data)
     },
     signup(data: SignupPayload) {
-      return axiosService.post<SignupSuccessResponse>("/users", data)
+      return axiosService.post<SignupSuccessResponse>("/signup", data)
     },
   }
 }

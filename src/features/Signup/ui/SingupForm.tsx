@@ -1,9 +1,10 @@
 import { Box, Button } from "@mui/material"
 
 import { SignupDataDTO, SignupSchema } from "../lib/signup.schema"
+import { useSignupMutation } from "../lib/useSignupMutation"
 
 import { BaseFormProvider, PasswordIcon, TextInputBase } from "~/shared/ui"
-import { useCustomForm, usePasswordType } from "~/shared/utils"
+import { ROUTES, useCustomForm, useCustomNavigator, usePasswordType } from "~/shared/utils"
 
 export const SignupFeature = () => {
   const form = useCustomForm({ defaultValues: { email: "", password: "" } }, SignupSchema)
@@ -12,8 +13,20 @@ export const SignupFeature = () => {
   const [passwordType, onPasswordIconClick] = usePasswordType()
   const [confirmPasswordType, onConfirmPasswordIconClick] = usePasswordType()
 
+  const { navigate } = useCustomNavigator()
+
+  const { mutate: signup, isLoading } = useSignupMutation({
+    onSuccess(data) {
+      console.log(data)
+
+      return navigate(ROUTES.login.path)
+    },
+  })
+
   const onSubmit = (data: SignupDataDTO) => {
-    console.log(data)
+    const { confirmPassword, ...rest } = data
+
+    return signup(rest)
   }
 
   return (
@@ -26,8 +39,8 @@ export const SignupFeature = () => {
           justifyContent: "center",
           alignItems: "center",
         }}>
-        <TextInputBase type="text" name="firstname" placeholder="Firstname" variant="outlined" sx={{ width: 300 }} />
-        <TextInputBase type="text" name="lastname" placeholder="Lastname" variant="outlined" sx={{ width: 300 }} />
+        <TextInputBase type="text" name="firstName" placeholder="Firstname" variant="outlined" sx={{ width: 300 }} />
+        <TextInputBase type="text" name="lastName" placeholder="Lastname" variant="outlined" sx={{ width: 300 }} />
         <TextInputBase type="text" name="email" placeholder="email" variant="outlined" sx={{ width: 300 }} />
         <TextInputBase
           type={passwordType}
@@ -47,7 +60,7 @@ export const SignupFeature = () => {
             <PasswordIcon isSecure={confirmPasswordType === "password"} onClick={onConfirmPasswordIconClick} />
           }
         />
-        <Button variant="contained" type="submit">
+        <Button variant="contained" type="submit" disabled={isLoading}>
           Submit
         </Button>
       </Box>

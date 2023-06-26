@@ -13,8 +13,10 @@ export const LoginFeature = () => {
   const [passwordType, onPasswordIconClick] = usePasswordType()
 
   const { mutate: login, isLoading } = useLoginMutation({
-    onSuccess: () => {
-      console.log("success")
+    onSuccess(data) {
+      // Save to local storage
+      // Save to redux
+      console.log(data)
     },
   })
 
