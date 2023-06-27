@@ -1,18 +1,19 @@
 import Button from "@mui/material/Button"
-import useMediaQuery from "@mui/material/useMediaQuery"
 
 import { ROUTES } from "~/shared/utils"
 
-export const LoginButton = () => {
-  const mobileMatches = useMediaQuery("(max-width:600px)")
+type Props = {
+  fontSize?: string | number
+}
 
+export const LoginButton = ({ fontSize }: Props) => {
   return (
     <Button
       variant="text"
       href={ROUTES.login.path}
       sx={{
         color: "black",
-        fontSize: mobileMatches ? "10px" : "20px",
+        fontSize: fontSize,
       }}>
       Войти
     </Button>

@@ -8,14 +8,23 @@ import { userModel } from "~/entities/user"
 import { LoginButton } from "~/features/Login"
 import { LogoutButton } from "~/features/Logout"
 import { SignupButton } from "~/features/Signup"
-import { ROUTES, headerHeight } from "~/shared/utils"
+import { ROUTES, headerHeight, useCustomNavigator } from "~/shared/utils"
 
 import "./style.css"
 
 export const Header = () => {
   const { isUserAuthenticated } = userModel.useAuthGuard()
+  const { navigate } = useCustomNavigator()
 
   const mobileMatches = useMediaQuery("(max-width:600px)")
+
+  const onLogoClick = () => {
+    if (isUserAuthenticated) {
+      navigate(ROUTES.dashboard.path)
+    } else {
+      navigate(ROUTES.landing.path)
+    }
+  }
 
   return (
     <AppBar
@@ -44,16 +53,16 @@ export const Header = () => {
             variant={mobileMatches ? "h6" : "h5"}
             noWrap
             component="a"
-            href={ROUTES.landing.path}
+            onClick={onLogoClick}
             className="effect-shine"
             sx={{
               mr: 2,
               display: { md: "flex" },
               fontWeight: 700,
-              letterSpacing: ".15rem",
-              color: "inherit",
+              letterSpacing: mobileMatches ? "0.1rem" : "0.3rem",
               textDecoration: "none",
-              fontSize: mobileMatches ? "12px" : "40px",
+              fontSize: mobileMatches ? "10px" : "inherit",
+              cursor: "pointer",
             }}>
             Developer Helper
           </Typography>
@@ -64,8 +73,8 @@ export const Header = () => {
                 display: "flex",
                 gap: 2,
               }}>
-              <LoginButton />
-              <SignupButton />
+              <LoginButton fontSize={mobileMatches ? "10px" : "14px"} />
+              <SignupButton fontSize={mobileMatches ? "10px" : "14px"} />
             </Box>
           )}
 

@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, Typography } from "@mui/material"
+import { Box, Card, CardContent, Typography, useMediaQuery } from "@mui/material"
 
 import { quizModel } from "~/entities/quiz"
 import { SignupButton } from "~/features/Signup"
@@ -10,10 +10,12 @@ type Props = {
 export const DemoQuizResult = ({ quizId }: Props) => {
   const { correctAnswersCount, questionsCount } = quizModel.useQuizResult({ quizId })
 
+  const mobileMatches = useMediaQuery("(max-width:600px)")
+
   return (
     <Card>
       <CardContent>
-        <Typography variant="h3" sx={{ marginBottom: 2 }}>
+        <Typography variant={mobileMatches ? "h4" : "h3"} sx={{ marginBottom: 2 }}>
           Поздравляем!
         </Typography>
         <Typography variant="subtitle1" sx={{ marginBottom: 2, color: "secondary.main" }}>
@@ -28,7 +30,7 @@ export const DemoQuizResult = ({ quizId }: Props) => {
           }%`}</Typography>
         </Box>
 
-        <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
+        <Typography variant="subtitle1" sx={{ marginTop: 2, marginBottom: 2 }}>
           Зарегистрируйтесь чтобы пройти другие тесты и улучшить свои навыки.
         </Typography>
 

@@ -4,8 +4,6 @@
 
 #root {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 a {
@@ -14,7 +12,5 @@ a {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-height: 100vh;
 }

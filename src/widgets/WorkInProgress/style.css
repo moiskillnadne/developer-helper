@@ -8,7 +8,7 @@
   color: #999;
 }
 
-.Iam .title {
+.title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -131,5 +131,22 @@
 @media (max-width: 1280px) {
   .Iam {
     font-size: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .Iam {
+    width: 350px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 5fr;
+  }
+
+  .title {
+    justify-content: start;
+    font-size: 14px;
+  }
+
+  .innerIam {
+    font-size: 12px;
   }
 }
