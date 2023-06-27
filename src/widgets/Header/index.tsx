@@ -1,8 +1,8 @@
 import AppBar from "@mui/material/AppBar"
 import Box from "@mui/material/Box"
-import Container from "@mui/material/Container"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import { userModel } from "~/entities/user"
 import { LoginButton } from "~/features/Login"
@@ -14,6 +14,8 @@ import "./style.css"
 
 export const Header = () => {
   const { isUserAuthenticated } = userModel.useAuthGuard()
+
+  const mobileMatches = useMediaQuery("(max-width:600px)")
 
   return (
     <AppBar
@@ -39,7 +41,7 @@ export const Header = () => {
             paddingRight: 1,
           }}>
           <Typography
-            variant="h6"
+            variant={mobileMatches ? "h6" : "h5"}
             noWrap
             component="a"
             href={ROUTES.landing.path}
@@ -48,9 +50,10 @@ export const Header = () => {
               mr: 2,
               display: { md: "flex" },
               fontWeight: 700,
-              letterSpacing: ".3rem",
+              letterSpacing: ".15rem",
               color: "inherit",
               textDecoration: "none",
+              fontSize: mobileMatches ? "12px" : "40px",
             }}>
             Developer Helper
           </Typography>
