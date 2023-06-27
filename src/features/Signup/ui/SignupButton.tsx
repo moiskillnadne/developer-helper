@@ -2,13 +2,18 @@ import Button from "@mui/material/Button"
 
 import { ROUTES } from "~/shared/utils"
 
-export const SignupButton = () => {
+type Props = {
+  fontSize?: string | number
+}
+
+export const SignupButton = ({ fontSize }: Props) => {
   return (
     <Button
       variant="contained"
       href={ROUTES.signup.path}
       sx={{
-        color: "black",
+        color: "white",
+        fontSize: fontSize,
       }}>
       Зарегистрироваться
     </Button>

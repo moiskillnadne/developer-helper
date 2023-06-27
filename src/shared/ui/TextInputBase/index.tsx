@@ -7,7 +7,7 @@ type Props = React.ComponentProps<typeof TextField> & {
 }
 
 export const TextInputBase = (props: Props) => {
-  const { name, onChange, sx, rightIconAdornment, type, id } = props
+  const { name, onChange, sx, rightIconAdornment, type, id, placeholder } = props
 
   const { control } = useFormContext()
   const {
@@ -27,11 +27,11 @@ export const TextInputBase = (props: Props) => {
 
   return (
     <FormControl sx={sx} error={invalid}>
-      <InputLabel htmlFor={id}>{name}</InputLabel>
+      <InputLabel htmlFor={id}>{placeholder}</InputLabel>
       <OutlinedInput
         id={id}
         type={type}
-        label={name}
+        label={placeholder}
         onChange={onChangeHanlder}
         endAdornment={<InputAdornment position="end">{rightIconAdornment}</InputAdornment>}
       />

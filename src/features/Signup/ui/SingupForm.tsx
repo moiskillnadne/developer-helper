@@ -20,7 +20,7 @@ export const SignupFeature = () => {
     isLoading,
     isSuccess,
   } = useSignupMutation({
-    onSuccess(data) {
+    onSuccess() {
       setTimeout(() => {
         navigate(ROUTES.login.path)
       }, 350)
@@ -47,7 +47,7 @@ export const SignupFeature = () => {
           id="firstName-text"
           type="text"
           name="firstName"
-          placeholder="Firstname"
+          placeholder="Имя"
           variant="outlined"
           sx={{ width: 300 }}
         />
@@ -55,7 +55,7 @@ export const SignupFeature = () => {
           id="lastNAme-text"
           type="text"
           name="lastName"
-          placeholder="Lastname"
+          placeholder="Фамилия"
           variant="outlined"
           sx={{ width: 300 }}
         />
@@ -63,7 +63,7 @@ export const SignupFeature = () => {
           id="email-text"
           type="text"
           name="email"
-          placeholder="email"
+          placeholder="Email"
           variant="outlined"
           sx={{ width: 300 }}
         />
@@ -71,7 +71,7 @@ export const SignupFeature = () => {
           id="password-text"
           type={passwordType}
           name="password"
-          placeholder="password"
+          placeholder="Пароль"
           variant="outlined"
           sx={{ width: 300 }}
           rightIconAdornment={<PasswordIcon isSecure={passwordType === "password"} onClick={onPasswordIconClick} />}
@@ -80,7 +80,7 @@ export const SignupFeature = () => {
           id="password-confirm-text"
           type={confirmPasswordType}
           name="confirmPassword"
-          placeholder="confirm password"
+          placeholder="Повторите пароль"
           variant="outlined"
           sx={{ width: 300 }}
           rightIconAdornment={
@@ -102,7 +102,7 @@ export const SignupFeature = () => {
           sx={{
             minWidth: 200,
           }}>
-          Submit
+          Зарегистрироваться
         </BasicButton>
       </Box>
     </BaseFormProvider>

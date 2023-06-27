@@ -2,11 +2,14 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
 import { headerHeight } from "~/shared/utils"
 import { DemoQuiz } from "~/widgets/DemoQuiz"
 
 export const LandingPage = () => {
+  const mobileMatches = useMediaQuery("(max-width:600px)")
+
   const welcomePhrase = "Улучши свои программерские навыки и получи работу"
 
   return (
@@ -21,10 +24,11 @@ export const LandingPage = () => {
           gridTemplateRows: "1fr 100px",
         }}>
         <Typography
-          variant="h3"
+          variant={mobileMatches ? "h6" : "h3"}
           align="center"
           sx={{
             fontWeight: "bold",
+            width: mobileMatches ? "310px" : "100vh",
           }}>
           {welcomePhrase}
         </Typography>

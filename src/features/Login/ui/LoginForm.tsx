@@ -3,12 +3,17 @@ import { Box } from "@mui/material"
 import { LoginDataDTO, LoginSchema } from "../lib/login.schema"
 import { useLoginMutation } from "../lib/useLoginMutation"
 
+import { secureTokensStorage, userModel } from "~/entities/user"
 import { BaseFormProvider, BasicButton, LoadingRound, PasswordIcon, SuccessRound, TextInputBase } from "~/shared/ui"
-import { useCustomForm, usePasswordType } from "~/shared/utils"
+import { ROUTES, useCustomForm, useCustomNavigator, usePasswordType } from "~/shared/utils"
 
 export const LoginFeature = () => {
   const form = useCustomForm({ defaultValues: { email: "", password: "" } }, LoginSchema)
   const { handleSubmit } = form
+
+  const { navigate } = useCustomNavigator()
+
+  const { setUser } = userModel.useUserState()
 
   const [passwordType, onPasswordIconClick] = usePasswordType()
 
@@ -18,9 +23,12 @@ export const LoginFeature = () => {
     isSuccess,
   } = useLoginMutation({
     onSuccess(data) {
-      // Save to local storage
-      // Save to redux
-      console.log(data)
+      const { user, accessToken, idToken, refreshToken } = data.data.details
+
+      setUser({ id: user.id, email: user.email, firstName: user.firstName, lastName: user.lastName })
+      secureTokensStorage.setTokens({ accessToken, idToken, refreshToken })
+
+      return navigate(ROUTES.dashboard.path)
     },
   })
 
@@ -38,11 +46,11 @@ export const LoginFeature = () => {
           justifyContent: "center",
           alignItems: "center",
         }}>
-        <TextInputBase type="text" name="email" placeholder="email" variant="outlined" sx={{ width: 300 }} />
+        <TextInputBase type="text" name="email" placeholder="Email" variant="outlined" sx={{ width: 300 }} />
         <TextInputBase
           type={passwordType}
           name="password"
-          placeholder="password"
+          placeholder="Пароль"
           variant="outlined"
           sx={{ width: 300 }}
           rightIconAdornment={<PasswordIcon isSecure={passwordType === "password"} onClick={onPasswordIconClick} />}
@@ -62,7 +70,7 @@ export const LoginFeature = () => {
           sx={{
             minWidth: 200,
           }}>
-          Submit
+          Войти
         </BasicButton>
       </Box>
     </BaseFormProvider>

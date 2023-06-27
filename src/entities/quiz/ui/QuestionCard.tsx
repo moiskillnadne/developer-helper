@@ -8,6 +8,7 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
+  useMediaQuery,
 } from "@mui/material"
 import { animated } from "@react-spring/web"
 
@@ -26,12 +27,14 @@ type Props = {
 export const QuestionCard = (props: Props) => {
   const { question, onChange, step, quizLength, springs } = props
 
+  const mobileMatches = useMediaQuery("(max-width:600px)")
+
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     return onChange(e.target.value)
   }
 
   return (
-    <Card sx={{ width: 600 }}>
+    <Card sx={{ width: mobileMatches ? 315 : 600 }}>
       <CardContent>
         <Box sx={{ display: "grid", gridTemplateColumns: "1fr 50px" }}>
           <animated.div style={{ ...springs }}>
