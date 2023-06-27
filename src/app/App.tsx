@@ -1,4 +1,4 @@
-import { AppLayout } from "./layout"
+import { AppLayout } from "./Layout"
 import { CustomThemeProvider, ReactQueryProvider, ReduxProvider, RouterProvider } from "./providers"
 
 import { Router } from "~/pages"
