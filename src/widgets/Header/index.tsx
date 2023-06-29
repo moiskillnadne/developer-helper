@@ -28,10 +28,12 @@ export const Header = () => {
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
       color="transparent"
       sx={{
         height: headerHeight,
+        boxShadow: "none",
+        backdropFilter: "blur(20px)",
       }}>
       <Box
         sx={{

@@ -10,8 +10,6 @@ import { DemoQuiz } from "~/widgets/DemoQuiz"
 export const LandingPage = () => {
   const mobileMatches = useMediaQuery("(max-width:600px)")
 
-  const welcomePhrase = "Улучши свои программерские навыки и получи работу"
-
   return (
     <Container>
       <Container
@@ -23,15 +21,28 @@ export const LandingPage = () => {
           justifyItems: "center",
           gridTemplateRows: "1fr 100px",
         }}>
-        <Typography
-          variant={mobileMatches ? "h6" : "h3"}
-          align="center"
-          sx={{
-            fontWeight: "bold",
-            width: mobileMatches ? "310px" : "100vh",
-          }}>
-          {welcomePhrase}
-        </Typography>
+        <Box>
+          <Typography
+            variant={mobileMatches ? "h6" : "h3"}
+            align="center"
+            sx={{
+              fontWeight: "bold",
+              width: mobileMatches ? "310px" : "100vh",
+            }}>
+            Тесты для начинающих <br /> frontend разработчиков
+          </Typography>
+          <Typography
+            variant={mobileMatches ? "caption" : "h6"}
+            align="center"
+            sx={{
+              fontWeight: "bold",
+              width: mobileMatches ? "310px" : "100vh",
+              color: "text.secondary",
+              opacity: 0.5,
+            }}>
+            Вот так вот 5 раз в день делаешь и работа болеть не будет
+          </Typography>
+        </Box>
 
         <Box
           sx={{
