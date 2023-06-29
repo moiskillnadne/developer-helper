@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom"
 import { DashboardPage } from "./DashboardPage"
 import { LandingPage } from "./LandingPage"
 import { LoginPage } from "./LoginPage"
+import { ProfilePage } from "./ProfilePage"
 import { SignupPage } from "./SignupPage"
 
 import { userModel } from "~/entities/user"
@@ -17,6 +18,7 @@ export const Router = () => {
       <Routes>
         <Route element={<ProtectedRoute token={tokens!.accessToken} />}>
           <Route path={ROUTES.dashboard.path} element={<DashboardPage />} />
+          <Route path={ROUTES.account.path} element={<ProfilePage />} />
         </Route>
       </Routes>
     )

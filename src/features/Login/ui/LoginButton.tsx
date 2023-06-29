@@ -1,16 +1,22 @@
 import Button from "@mui/material/Button"
 
-import { ROUTES } from "~/shared/utils"
+import { ROUTES, useCustomNavigator } from "~/shared/utils"
 
 type Props = {
   fontSize?: string | number
 }
 
 export const LoginButton = ({ fontSize }: Props) => {
+  const { navigate } = useCustomNavigator()
+
+  const onLoginClick = () => {
+    return navigate(ROUTES.login.path)
+  }
+
   return (
     <Button
       variant="text"
-      href={ROUTES.login.path}
+      onClick={onLoginClick}
       sx={{
         color: "black",
         fontSize: fontSize,
