@@ -1,12 +1,24 @@
+import { useState } from "react"
+
 import { Box } from "@mui/material"
 
 import { SignupDataDTO, SignupSchema } from "../lib/signup.schema"
 import { useSignupMutation } from "../lib/useSignupMutation"
 
-import { BaseFormProvider, BasicButton, LoadingRound, PasswordIcon, SuccessRound, TextInputBase } from "~/shared/ui"
+import {
+  BaseFormProvider,
+  BasicButton,
+  LoadingRound,
+  PasswordIcon,
+  SuccessRound,
+  TextInputBase,
+  Toast,
+} from "~/shared/ui"
 import { ROUTES, useCustomForm, useCustomNavigator, usePasswordType } from "~/shared/utils"
 
 export const SignupFeature = () => {
+  const [open, setOpen] = useState(false)
+
   const form = useCustomForm({ defaultValues: { email: "", password: "" } }, SignupSchema)
   const { handleSubmit } = form
 
@@ -15,15 +27,28 @@ export const SignupFeature = () => {
 
   const { navigate } = useCustomNavigator()
 
+  const handleOpenToast = () => {
+    setOpen(true)
+  }
+
+  const handleCloseToast = () => {
+    setOpen(false)
+  }
+
   const {
     mutate: signup,
     isLoading,
     isSuccess,
+    isError,
+    error,
   } = useSignupMutation({
     onSuccess() {
       setTimeout(() => {
         navigate(ROUTES.login.path)
       }, 350)
+    },
+    onError() {
+      handleOpenToast()
     },
   })
 
@@ -105,6 +130,15 @@ export const SignupFeature = () => {
           Зарегистрироваться
         </BasicButton>
       </Box>
+
+      {isError && (
+        <Toast
+          isOpen={open}
+          handleClose={handleCloseToast}
+          severity="error"
+          content={error.evaluatedMessage ?? error.fallbackMessage}
+        />
+      )}
     </BaseFormProvider>
   )
 }

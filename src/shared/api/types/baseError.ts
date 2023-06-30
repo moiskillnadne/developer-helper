@@ -1,11 +1,18 @@
-interface Result {
+interface BaseServerError {
+  cause: string
   message: string
-  path: string[]
-  type: string
+  statusCode: number
+  meta: {
+    path: string
+    timestamp: string
+  }
 }
 
 export type BaseError = {
   message?: string
-  response: { data: { result: Array<Result> } }
+  response: { data: BaseServerError }
   evaluatedMessage?: string
+  evaluatedCause?: string
+
+  fallbackMessage: string
 }

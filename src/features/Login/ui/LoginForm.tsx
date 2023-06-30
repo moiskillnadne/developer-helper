@@ -1,13 +1,25 @@
+import { useState } from "react"
+
 import { Box } from "@mui/material"
 
 import { LoginDataDTO, LoginSchema } from "../lib/login.schema"
 import { useLoginMutation } from "../lib/useLoginMutation"
 
 import { secureTokensStorage, userModel } from "~/entities/user"
-import { BaseFormProvider, BasicButton, LoadingRound, PasswordIcon, SuccessRound, TextInputBase } from "~/shared/ui"
+import {
+  BaseFormProvider,
+  BasicButton,
+  LoadingRound,
+  PasswordIcon,
+  SuccessRound,
+  TextInputBase,
+  Toast,
+} from "~/shared/ui"
 import { ROUTES, useCustomForm, useCustomNavigator, usePasswordType } from "~/shared/utils"
 
 export const LoginFeature = () => {
+  const [open, setOpen] = useState(false)
+
   const form = useCustomForm({ defaultValues: { email: "", password: "" } }, LoginSchema)
   const { handleSubmit } = form
 
@@ -17,10 +29,24 @@ export const LoginFeature = () => {
 
   const [passwordType, onPasswordIconClick] = usePasswordType()
 
+  const handleOpenToast = () => {
+    setOpen(true)
+  }
+
+  const handleCloseToast = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === "clickaway") {
+      return
+    }
+
+    setOpen(false)
+  }
+
   const {
     mutate: login,
     isLoading,
     isSuccess,
+    error,
+    isError,
   } = useLoginMutation({
     onSuccess(data) {
       const { user, accessToken, idToken, refreshToken } = data.data.details
@@ -29,6 +55,9 @@ export const LoginFeature = () => {
       secureTokensStorage.setTokens({ accessToken, idToken, refreshToken })
 
       return navigate(ROUTES.dashboard.path)
+    },
+    onError() {
+      handleOpenToast()
     },
   })
 
@@ -73,6 +102,15 @@ export const LoginFeature = () => {
           Войти
         </BasicButton>
       </Box>
+
+      {isError && (
+        <Toast
+          isOpen={open}
+          handleClose={handleCloseToast}
+          severity="error"
+          content={error.evaluatedMessage ?? error.fallbackMessage}
+        />
+      )}
     </BaseFormProvider>
   )
 }
