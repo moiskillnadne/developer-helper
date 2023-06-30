@@ -14,7 +14,14 @@ const useBaseMutation = <TRequest, TResponse>(
   return useMutation(key, mutationFn, {
     ...options,
     onError: (error: BaseError, variables: TRequest, context: unknown) => {
-      // Custom error handling logic
+      error.fallbackMessage = "Сервер ушел на обеденный перерыв. Приходите позже :)"
+
+      if (error?.response?.data?.message) {
+        error.evaluatedMessage = error.response.data.message
+      }
+      if (error?.response?.data?.cause) {
+        error.evaluatedCause = error.response.data.cause
+      }
 
       if (options?.onError) {
         options?.onError(error, variables, context)
