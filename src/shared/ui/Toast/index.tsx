@@ -40,7 +40,7 @@ export const Toast = ({ isOpen, handleClose, content, severity }: Props) => {
         onClose={intermediateHandleClose}
         transitionDuration={350}
         TransitionComponent={Slide}>
-        <Alert onClose={handleClose} sx={{ width: "100%" }} severity={severity}>
+        <Alert onClose={intermediateHandleClose} sx={{ width: "100%" }} severity={severity}>
           {content}
         </Alert>
       </Snackbar>
