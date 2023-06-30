@@ -4,16 +4,17 @@ import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 import useMediaQuery from "@mui/material/useMediaQuery"
 
+import { AccountButton } from "./ui/AccountButton"
+
 import { userModel } from "~/entities/user"
 import { LoginButton } from "~/features/Login"
-import { LogoutButton } from "~/features/Logout"
 import { SignupButton } from "~/features/Signup"
 import { ROUTES, headerHeight, useCustomNavigator } from "~/shared/utils"
 
 import "./style.css"
 
 export const Header = () => {
-  const { isUserAuthenticated } = userModel.useAuthGuard()
+  const { isUserAuthenticated, user } = userModel.useAuthGuard()
   const { navigate } = useCustomNavigator()
 
   const mobileMatches = useMediaQuery("(max-width:600px)")
@@ -28,10 +29,12 @@ export const Header = () => {
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
       color="transparent"
       sx={{
         height: headerHeight,
+        boxShadow: "none",
+        backdropFilter: "blur(20px)",
       }}>
       <Box
         sx={{
@@ -78,7 +81,9 @@ export const Header = () => {
             </Box>
           )}
 
-          {isUserAuthenticated && <LogoutButton />}
+          {isUserAuthenticated && (
+            <AccountButton firstName={user.details?.firstName} lastName={user.details?.lastName} />
+          )}
         </Toolbar>
       </Box>
     </AppBar>

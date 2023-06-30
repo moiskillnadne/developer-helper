@@ -12,4 +12,7 @@ export const ROUTES = {
   dashboard: {
     path: "/dashboard",
   },
+  account: {
+    path: "/account",
+  },
 }
