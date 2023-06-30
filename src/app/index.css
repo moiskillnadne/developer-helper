@@ -1,5 +1,6 @@
-* {
+html * {
   font-family: "Comfortaa", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  transition: all 0.25s;
 }
 
 #root {
