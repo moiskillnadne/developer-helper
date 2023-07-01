@@ -67,6 +67,7 @@ export const SignupFeature = () => {
           gap: 2,
           justifyContent: "center",
           alignItems: "center",
+          backdropFilter: "blur(8px)",
         }}>
         <TextInputBase
           id="firstName-text"
