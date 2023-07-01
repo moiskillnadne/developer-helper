@@ -37,7 +37,7 @@ export const LandingPage = () => {
             sx={{
               fontWeight: "bold",
               width: mobileMatches ? "310px" : "100vh",
-              fontSize: mobileMatches ? "10px" : "inherit",
+              fontSize: mobileMatches ? "9px" : "inherit",
               color: "text.secondary",
               opacity: 0.5,
             }}>

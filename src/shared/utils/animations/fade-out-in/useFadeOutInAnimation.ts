@@ -10,7 +10,7 @@ export const useFadeOutOnAnimation = () => {
   }))
 
   const startFadeOutInAnimation = () => {
-    return api.start({ from: { opacity: 1 }, to: { opacity: 0 }, delay: 500, config: { duration: 500 } })
+    return api.start({ from: { opacity: 1 }, to: { opacity: 0 }, config: { duration: 500 } })
   }
 
   const endFadeOutInAnimation = () => {

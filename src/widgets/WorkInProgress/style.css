@@ -1,8 +1,6 @@
 .Iam {
   display: grid;
   grid-template-columns: 1fr 9fr;
-  padding: 1em 1em;
-  font-family: Montserrat, sans-serif;
   font-style: normal;
   font-size: 40px;
   color: #999;
