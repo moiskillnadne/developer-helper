@@ -74,6 +74,7 @@ export const LoginFeature = () => {
           gap: 2,
           justifyContent: "center",
           alignItems: "center",
+          backdropFilter: "blur(8px)",
         }}>
         <TextInputBase type="text" name="email" placeholder="Email" variant="outlined" sx={{ width: 300 }} />
         <TextInputBase

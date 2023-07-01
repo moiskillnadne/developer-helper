@@ -18,6 +18,7 @@ export const AccountDetails = () => {
         flexDirection: "column",
         justifyItems: "center",
         alignItems: "center",
+        backdropFilter: "blur(8px)",
       }}>
       <ProfileImage
         isStringAvatar={true}

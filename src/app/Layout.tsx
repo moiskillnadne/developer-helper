@@ -8,7 +8,7 @@ export const AppLayout = ({ children }: Props) => {
   return (
     <>
       <Header />
-      {children}
+      <div className="content-container">{children}</div>
     </>
   )
 }
